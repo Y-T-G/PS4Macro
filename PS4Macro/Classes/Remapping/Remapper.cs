@@ -96,11 +96,11 @@ namespace PS4Macro.Classes.Remapping
             IsCursorShowing = true;
 
             EnableMouseInput = false;
-            MouseSensitivity = 1;
-            MouseDecayRate = 1.2;
+            MouseSensitivity = 0.25;
+            MouseDecayRate = 1.05;
             MouseDecayThreshold = 0.1;
             MouseAnalogDeadzone = 14.25;
-            MouseMakeupSpeed = 500;
+            MouseMakeupSpeed = 250;
             MouseMovementAnalog = AnalogStick.Right;
             MouseInvertXAxis = false;
             MouseInvertYAxis = false;
@@ -251,13 +251,6 @@ namespace PS4Macro.Classes.Remapping
                                 MouseReleaseTimer.Start();
                                 MouseReleaseTimer.Elapsed += (s, e) =>
                                 {
-                                    // Recenter cursor
-                                    RemapperUtility.SetCursorPosition(MOUSE_CENTER_X, MOUSE_CENTER_Y);
-
-                                    // Reset cursor overflow
-                                    CursorOverflowX = 0;
-                                    CursorOverflowY = 0;
-
                                     // Stop release timer
                                     MouseReleaseTimer.Stop();
                                     MouseReleaseTimer = null;
@@ -479,7 +472,7 @@ namespace PS4Macro.Classes.Remapping
 
                 if (didSetPosition)
                 {
-                    //RemapperUtility.SetCursorPosition(tmpX, tmpY);
+                    RemapperUtility.SetCursorPosition(tmpX, tmpY);
                     e.Handled = true;
                 }
                 #endregion
